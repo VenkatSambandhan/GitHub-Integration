@@ -1,0 +1,46 @@
+public class GitHubDetails 
+{
+    public String giturl {get;set;}          
+    
+    public GitHubDetails() {
+    	System.debug('Hello World');
+    }              
+    
+    public Pagereference getRec(){
+        
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(giturl);
+        request.setMethod('GET');
+        request.setHeader('Content-Type', 'application/json');
+		request.setHeader('Accept','application/json');
+        HttpResponse res = http.send(request);
+            
+         if(res.getstatusCode() == 200 && res.getbody() != null){
+			 System.debug('RESPONSE:' + res.getBody()); 
+             String html = res.getBody();
+             
+             /* Trying to split the html into line by line and using regex to get the relevant info */
+
+             List<String> splitting = html.split('\n');
+
+             for(String s: splitting)
+             {
+             		    System.debug('Line by Line:' +s);
+                 	// 	String HTML_TAG_PATTERN = '<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>';
+                 	//	pattern myPattern = pattern.compile(HTML_TAG_PATTERN);
+                 	//	matcher myMatcher = myPattern.matcher(html);
+                 	//	System.debug(myMatcher.replaceAll(''));
+                 	//	System.debug(''); 
+              } 
+         }
+         
+         else{
+                 System.debug('Error');
+         }
+         
+         return null;   
+    }
+
+	        
+}

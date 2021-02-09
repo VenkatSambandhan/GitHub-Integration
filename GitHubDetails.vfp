@@ -1,0 +1,10 @@
+<apex:page controller="GitHubDetails" lightningStylesheets="true">
+    <apex:form >
+        <apex:pageBlock title="Kubernetes GitHub Link"> 
+            <apex:pageBlockSection > 
+    			<apex:inputText label="GIT URL:" value="{!giturl}" id="giturl"/>
+            </apex:pageBlockSection>
+            <apex:commandButton value="Get GIT Details" action="{!getRec}"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
